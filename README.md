@@ -17,11 +17,15 @@ After publishing your image to the registry you can also use it in your Kubernet
 
     docker run --rm -it --name facerecognition-yolo facerecognition-yolo bash
 
-### Running Darknet Face Recognition
+### Running the Face Recognition
 
 Inside the container run:
 
     cd object-detection-opencv && python3 yolo_opencv.py --image /tmp/original-image.jpg --config yolov3.cfg --weights ../yolov3.weights --classes yolov3.txt 
+
+## Downloading the YOLO Weights Definition
+
+    wget https://pjreddie.com/media/files/yolov3.weights
 
 ## Links and Further Reading
 
