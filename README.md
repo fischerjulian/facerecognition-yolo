@@ -4,12 +4,12 @@ TBD What this image is about...
 
 ## Building the Image
 
-    docker build -t facerecognition-yolo .
+    docker build -t facerecognition-yolo:dev .
 
 ## Publishing the Image
 
-    docker tag <image-id> <registry-username>/facerecognition-yolo:<tag: v0.1>
-    docker push <registry-useername>/facerecognition-yolo
+    docker tag facerecognition-yolo:dev fischerjulian/facerecognition-yolo:dev
+    docker push fischerjulian/facerecognition-yolo:dev
 
 After publishing your image to the registry you can also use it in your Kubernetes cluster / Argo workflows.
 
@@ -21,7 +21,9 @@ After publishing your image to the registry you can also use it in your Kubernet
 
 Inside the container run:
 
-    cd object-detection-opencv && python3 yolo_opencv.py --image /tmp/original-image.jpg --config yolov3.cfg --weights ../yolov3.weights --classes yolov3.txt 
+    cd object-detection-opencv && python3 yolo_opencv.py --image /tmp/object_recognition/original-image.jpg --config yolov3.cfg --weights ../yolov3.weights --classes yolov3.txt 
+
+This will produce output file: `/tmp/object_recognition/filtered-image.jpg`
 
 ## Downloading the YOLO Weights Definition
 

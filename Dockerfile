@@ -20,7 +20,14 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
   build-essential \
   git \
   python3 python3-numpy python3-setuptools python3-pip\
-  libopencv-dev opencv-data
+  libopencv-dev opencv-data \
+  ruby-dev \
+  ruby \
+  libxml2-dev \
+  libcurl4-openssl-dev \
+  vim
+
+RUN gem install bundler
 
 COPY yolov3.weights /workdir/yolov3.weights
 
@@ -33,6 +40,11 @@ COPY yolo_opencv.py /workdir/object-detection-opencv/yolo_opencv.py
 
 # Provide an exemplary origina-file for, mainly for manual testing.
 RUN cp /workdir/object-detection-opencv/dog.jpg /tmp/original-image.jpg
+
+COPY worker/Gemfile /workdir/Gemfile
+COPY worker/worker.rb /workdir/worker.rb
+
+RUN bundle
 
 # Recommended CMD
 # cd object-detection-opencv && python3 yolo_opencv.py --image /tmp/original-image.jpg --config yolov3.cfg --weights ../yolov3.weights --classes yolov3.txt 
