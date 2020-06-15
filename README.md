@@ -11,7 +11,9 @@ TBD What this image is about...
     docker tag facerecognition-yolo:dev fischerjulian/facerecognition-yolo:dev
     docker push fischerjulian/facerecognition-yolo:dev
 
-After publishing your image to the registry you can also use it in your Kubernetes cluster / Argo workflows.
+As a one liner:
+
+    docker build -t facerecognition-yolo:dev . && docker tag facerecognition-yolo:dev fischerjulian/facerecognition-yolo:dev && docker push fischerjulian/facerecognition-yolo:dev
 
 ## Running the Image
 

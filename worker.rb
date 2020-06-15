@@ -96,6 +96,13 @@ class ImargardWorkingHard
     puts "\t\tDone."
   end
 
+  def execute_object_recognition
+    cmd = 'python3 yolo_opencv.py --image /tmp/object_recognition/original-image.jpg --config yolov3.cfg --weights yolov3.weights --classes yolov3.txt'
+    puts "\t\tExecuting object recognition with CMD: #{cmd}"
+    system(cmd)
+    puts "\t\tDone."
+  end
+
   public
 
   def work!
@@ -112,11 +119,11 @@ class ImargardWorkingHard
       # Store as @object_recognition_infile
       retrieve_object_recognition_infile_from_object_store(object_name)
 
-      sleep 2
+      execute_object_recognition
       
       upload_object_recognition_outfile_to_object_store(object_name)
 
-      cleanup()
+      cleanup
 
       @rabbit_channel.ack(delivery_info.delivery_tag)
       puts "\tDone processing."
