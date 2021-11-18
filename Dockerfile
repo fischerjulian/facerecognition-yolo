@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:21.04
 
 LABEL maintainer="julian.fischer@anynines.com"
 LABEL description="Facerecognition using (Darnket) Yolo Weights."
